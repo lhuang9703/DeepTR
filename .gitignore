@@ -1,4 +1,9 @@
 test/
+examples/wikiqa/weights/
+examples/toy_example/weights/
+examples/bioasq/weights/
+*.txt
+oov.p
 .github/
 *.pyc
 *.log

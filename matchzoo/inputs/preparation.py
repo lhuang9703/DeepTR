@@ -35,6 +35,7 @@ class Preparation(object):
         subs = line.split(delimiter)
         # print('subs: ', len(subs))
         if 3 != len(subs):
+            print(subs)
             raise ValueError('format of data file wrong, should be \'label,text1,text2\'.')
         else:
             return subs[0], subs[1], subs[2]
@@ -70,7 +71,7 @@ class Preparation(object):
         f.close()
         return corpus, rels
 
-    def run_with_one_corpus(self, file_path):
+    def run_with_one_corpus(self, file_path, delimiter):
         hashid = {}
         corpus = {}
         rels = []
@@ -78,7 +79,10 @@ class Preparation(object):
         for line in f:
             line = line
             line = line.strip()
-            label, t1, t2 = self.parse_line(line)
+            try:
+                label, t1, t2 = self.parse_line(line, delimiter)
+            except:
+                continue
             id1 = self.get_text_id(hashid, t1, 'T')
             id2 = self.get_text_id(hashid, t2, 'T')
             corpus[id1] = t1

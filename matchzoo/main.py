@@ -24,6 +24,10 @@ import metrics
 from losses import *
 from optimizers import *
 
+import matplotlib as mpl
+mpl.use("Agg")
+import matplotlib.pyplot as plt
+
 config = tensorflow.ConfigProto()
 config.gpu_options.allow_growth = True
 sess = tensorflow.Session(config = config)
@@ -141,6 +145,10 @@ def train(config):
             eval_metrics[mobj] = metrics.get(mobj)
     model.compile(optimizer=optimizer, loss=loss)
     print('[Model] Model Compile Done.', end='\n')
+    
+    # for drawing loss picture
+    iter_list_plt = []
+    loss_list_plt = []
 
     for i_e in range(num_iters):
         for tag, generator in train_gen.items():
@@ -154,6 +162,8 @@ def train(config):
                     verbose = 0
                 ) #callbacks=[eval_map])
             print('Iter:%d\tloss=%.6f' % (i_e, history.history['loss'][0]), end='\n')
+            iter_list_plt.append(i_e)
+            loss_list_plt.append(history.history['loss'][0])
 
         for tag, generator in eval_gen.items():
             genfun = generator.get_batch_generator()
@@ -179,6 +189,15 @@ def train(config):
             sys.stdout.flush()
         if (i_e+1) % save_weights_iters == 0:
             model.save_weights(weights_file % (i_e+1))
+
+    # draw loss_iter picture
+    plt.figure()
+    plt.plot(iter_list_plt, loss_list_plt)
+    plt.xlabel('iter')
+    plt.ylabel('loss')
+    plt.title('loss-iter picture')
+    plt.savefig('iter2000.png')
+
 
 def predict(config):
     ######## Read input config ########
