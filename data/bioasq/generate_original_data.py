@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # vim:fenc=utf-8
 #
-# Copyright ÃÂÃÂ© 2019 lhuang <lhuang9703@gmail.com>
+# Copyright ÃÂÃÂÃÂÃÂ© 2019 lhuang <lhuang9703@gmail.com>
 #
 # Distributed under terms of the MIT license.
 
@@ -41,7 +41,7 @@ def generate_out_file(file_name, data, docs):
             for item in rel_doc:
                 doc_text = get_doc_by_id(item, docs)
                 if doc_text != '':
-                    f.write('1' + '<<-->>' + qtext + '<<-->>' + doc_text + '\n')
+                    f.write('1' + '<<-->>' + qid + '<<-->>' + qtext + '<<-->>' + item + '<<-->>' + doc_text + '\n')
             bm25_retrieved_doc = data['queries'][i]['retrieved_documents']
             for j in range(len(bm25_retrieved_doc)):
                 item = bm25_retrieved_doc[j]
@@ -49,7 +49,7 @@ def generate_out_file(file_name, data, docs):
                     doc_id = item['doc_id']
                     doc_text = get_doc_by_id(doc_id, docs)
                     if doc_text != '':
-                        f.write('0' + '<<-->>' + qtext + '<<-->>' + doc_text + '\n')
+                        f.write('0' + '<<-->>' + qid + '<<-->>' + qtext + '<<-->>' + doc_id + '<<-->>' + doc_text + '\n')
 
 
 if __name__ == '__main__':

@@ -196,7 +196,7 @@ def train(config):
     plt.xlabel('iter')
     plt.ylabel('loss')
     plt.title('loss-iter picture')
-    plt.savefig('iter2000.png')
+    # plt.savefig('drmm_iter2000.png')
 
 
 def predict(config):

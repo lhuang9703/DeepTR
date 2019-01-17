@@ -34,11 +34,11 @@ class Preparation(object):
     def parse_line(self, line, delimiter='\t'):
         subs = line.split(delimiter)
         # print('subs: ', len(subs))
-        if 3 != len(subs):
+        if 5 != len(subs):
             print(subs)
             raise ValueError('format of data file wrong, should be \'label,text1,text2\'.')
         else:
-            return subs[0], subs[1], subs[2]
+            return subs[0], subs[1], subs[2], subs[3], subs[4]
 
     def parse_line_for_quora(self, line, delimiter='","'):
         subs = line.split(delimiter)
@@ -75,12 +75,13 @@ class Preparation(object):
         hashid = {}
         corpus = {}
         rels = []
+        dicts = {}
         f = codecs.open(file_path, 'r', encoding='utf8')
         for line in f:
             line = line
             line = line.strip()
             try:
-                label, t1, t2 = self.parse_line(line, delimiter)
+                label, idx1, t1, idx2, t2 = self.parse_line(line, delimiter)
             except:
                 continue
             id1 = self.get_text_id(hashid, t1, 'T')
@@ -88,6 +89,15 @@ class Preparation(object):
             corpus[id1] = t1
             corpus[id2] = t2
             rels.append((label, id1, id2))
+            if idx1 not in dicts:
+                dicts[idx1] = id1
+            if idx2 not in dicts:
+                dicts[idx2] = id2
+        idf = codecs.open('id_trans.txt', 'w', encoding='utf8')
+        print(len(dicts))
+        for item in dicts:
+            idf.write(item + '\t' + dicts[item] + '\n')
+        idf.close()
         f.close()
         return corpus, rels
 
