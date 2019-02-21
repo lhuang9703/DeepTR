@@ -97,7 +97,7 @@ def load_word_embedding(vocab, w2v_file):
     print("pre_trained length: " + str(len(pre_trained)))
     print("vocab length: " + str(len(vocab)))
     print("oov_word_list length: " + str(len(oov_word_list)))
-    print('oov word list example (30): ', oov_word_list[:30])
+    # print('oov word list example (30): ', oov_word_list[:30])
     pickle.dump(oov_word_list, open('oov.p', 'wb'), protocol=2)
 
     embeddings = np.array(embeddings, dtype=np.float32)
@@ -112,7 +112,7 @@ def load_word_dict(word_map_file):
         try:
             word_dict[line[0]] = int(line[1])
         except:
-            print(line)
+            # print(line)
             continue
     return word_dict
 

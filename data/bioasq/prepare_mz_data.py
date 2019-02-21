@@ -26,7 +26,7 @@ if __name__ == '__main__':
     print('total relations : %d ...' % (len(rels)))
     prepare.save_corpus(base_dir + 'corpus.txt', corpus)
 
-    '''rel_train, rel_valid, rel_test = prepare.split_train_valid_test(rels, (0.6, 0.2, 0.2))
+    rel_train, rel_valid, rel_test = prepare.split_train_valid_test(rels, (0.6, 0.2, 0.2))
     prepare.save_relation(base_dir + 'relation_train.txt', rel_train)
     prepare.save_relation(base_dir + 'relation_valid.txt', rel_valid)
     prepare.save_relation(base_dir + 'relation_test.txt', rel_test)
@@ -45,4 +45,4 @@ if __name__ == '__main__':
     for inum, did in enumerate(dids):
         fout.write('%s %s %s\n' % (did, len(docs[inum]), ' '.join(map(str, docs[inum]))))
     fout.close()
-    print('Preprocess finished ...')'''
+    print('Preprocess finished ...')

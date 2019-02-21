@@ -4,6 +4,7 @@ examples/toy_example/weights/
 examples/bioasq/weights/
 *.txt
 oov.p
+*.png
 .github/
 *.pyc
 *.log

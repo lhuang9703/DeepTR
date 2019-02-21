@@ -23,6 +23,18 @@ if __name__ == '__main__':
             srcdir + 'relation_valid.hist-%d.txt' % hist_size,
             srcdir + 'relation_test.hist-%d.txt' % hist_size
             ]
+    '''relfiles = [ srcdir + 'relation_6b_01_trec.txt', 
+            srcdir + 'relation_6b_02_trec.txt', 
+            srcdir + 'relation_6b_03_trec.txt', 
+            srcdir + 'relation_6b_04_trec.txt', 
+            srcdir + 'relation_6b_05_trec.txt'
+            ]
+    histfiles = [ srcdir + 'relation_6b_01_trec.hist-%d.txt' % hist_size, 
+            srcdir + 'relation_6b_02_trec.hist-%d.txt' % hist_size, 
+            srcdir + 'relation_6b_03_trec.hist-%d.txt' % hist_size, 
+            srcdir + 'relation_6b_04_trec.hist-%d.txt' % hist_size, 
+            srcdir + 'relation_6b_05_trec.hist-%d.txt' % hist_size 
+            ]'''
     embed_dict = read_embedding(filename = embedfile)
     print('read embedding finished ...')
     _PAD_ = len(embed_dict)

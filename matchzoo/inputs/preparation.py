@@ -84,12 +84,12 @@ class Preparation(object):
                 label, idx1, t1, idx2, t2 = self.parse_line(line, delimiter)
             except:
                 continue
-            id1 = self.get_text_id(hashid, t1, 'T')
-            id2 = self.get_text_id(hashid, t2, 'T')
-            corpus[id1] = t1
-            corpus[id2] = t2
-            rels.append((label, id1, id2))
-            if idx1 not in dicts:
+            # id1 = self.get_text_id(hashid, t1, 'T')
+            # id2 = self.get_text_id(hashid, t2, 'T')
+            corpus[idx1] = t1
+            corpus[idx2] = t2
+            rels.append((label, idx1, idx2))
+            '''if idx1 not in dicts:
                 dicts[idx1] = id1
             if idx2 not in dicts:
                 dicts[idx2] = id2
@@ -97,7 +97,7 @@ class Preparation(object):
         print(len(dicts))
         for item in dicts:
             idf.write(item + '\t' + dicts[item] + '\n')
-        idf.close()
+        idf.close()'''
         f.close()
         return corpus, rels
 
